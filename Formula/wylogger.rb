@@ -5,20 +5,20 @@
 class Wylogger < Formula
   desc "A tool for automatically authenticate the network of Wen Yuan Talent Apartment."
   homepage "https://github.com/mafuka/wylogger"
-  version "0.1.4"
+  version "0.1.5"
 
   on_macos do
-    if Hardware::CPU.arm?
-      url "https://github.com/mafuka/wylogger/releases/download/0.1.4/wylogger_darwin_arm64.tar.gz"
-      sha256 "cac3c64753959a6049ce13dda6faf037a97e85e60cc868c8427e8e5e9527a45e"
+    if Hardware::CPU.intel?
+      url "https://github.com/mafuka/wylogger/releases/download/0.1.5/wylogger_darwin_amd64.tar.gz"
+      sha256 "675e7b15f8ccb182b08f55f107c30f2a00d498f4f2927888397e932054c947de"
 
       def install
         bin.install "wylogger"
       end
     end
-    if Hardware::CPU.intel?
-      url "https://github.com/mafuka/wylogger/releases/download/0.1.4/wylogger_darwin_amd64.tar.gz"
-      sha256 "6143b6c057754508c189bae94b47af2e162e60ce01e098e3d249943e50ace83c"
+    if Hardware::CPU.arm?
+      url "https://github.com/mafuka/wylogger/releases/download/0.1.5/wylogger_darwin_arm64.tar.gz"
+      sha256 "ef7e26fe9e7f8631b6e9ddea69807b2c01e9edfb3f4008d74de8186f7e80ebbc"
 
       def install
         bin.install "wylogger"
@@ -28,16 +28,16 @@ class Wylogger < Formula
 
   on_linux do
     if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://github.com/mafuka/wylogger/releases/download/0.1.4/wylogger_linux_arm64.tar.gz"
-      sha256 "45d915606c0c4a3571a5fcd3f4eb9cd36804b3d9785aa2bd41b3a22e3fe31049"
+      url "https://github.com/mafuka/wylogger/releases/download/0.1.5/wylogger_linux_arm64.tar.gz"
+      sha256 "2229c3fda95f5e7cd5237015b94baa7adb1b4bf966ae2224fc2975f78dd19f78"
 
       def install
         bin.install "wylogger"
       end
     end
     if Hardware::CPU.intel?
-      url "https://github.com/mafuka/wylogger/releases/download/0.1.4/wylogger_linux_amd64.tar.gz"
-      sha256 "4c715c8a1c9e2d8c113a9ad191808a474a196169564c589b629151e800104fda"
+      url "https://github.com/mafuka/wylogger/releases/download/0.1.5/wylogger_linux_amd64.tar.gz"
+      sha256 "ec3732d695aba0be9586cef447c8a0cb411bc371cba40db3c08af0dd46378c88"
 
       def install
         bin.install "wylogger"
