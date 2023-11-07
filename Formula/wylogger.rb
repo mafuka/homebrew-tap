@@ -10,37 +10,41 @@ class Wylogger < Formula
   on_macos do
     if Hardware::CPU.intel?
       url "https://github.com/mafuka/wylogger/releases/download/0.1.5/wylogger_darwin_amd64.tar.gz"
-      sha256 "675e7b15f8ccb182b08f55f107c30f2a00d498f4f2927888397e932054c947de"
+      sha256 "e78a94ad2c1015a31b41a624a5f65e2fbe03da961f455dd64b84121c02726ee6"
 
       def install
         bin.install "wylogger"
+        prefix.install "config.example.yml"
       end
     end
     if Hardware::CPU.arm?
       url "https://github.com/mafuka/wylogger/releases/download/0.1.5/wylogger_darwin_arm64.tar.gz"
-      sha256 "ef7e26fe9e7f8631b6e9ddea69807b2c01e9edfb3f4008d74de8186f7e80ebbc"
+      sha256 "ff9039ff21d147c71d41e557d46ec228440c53bc440668f03f9930c6c3b7dd6d"
 
       def install
         bin.install "wylogger"
+        prefix.install "config.example.yml"
       end
     end
   end
 
   on_linux do
-    if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://github.com/mafuka/wylogger/releases/download/0.1.5/wylogger_linux_arm64.tar.gz"
-      sha256 "2229c3fda95f5e7cd5237015b94baa7adb1b4bf966ae2224fc2975f78dd19f78"
-
-      def install
-        bin.install "wylogger"
-      end
-    end
     if Hardware::CPU.intel?
       url "https://github.com/mafuka/wylogger/releases/download/0.1.5/wylogger_linux_amd64.tar.gz"
-      sha256 "ec3732d695aba0be9586cef447c8a0cb411bc371cba40db3c08af0dd46378c88"
+      sha256 "ad760f5d49b885a566e578e271cce27be0b30041ca41542fa3ce89516ff760c1"
 
       def install
         bin.install "wylogger"
+        prefix.install "config.example.yml"
+      end
+    end
+    if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
+      url "https://github.com/mafuka/wylogger/releases/download/0.1.5/wylogger_linux_arm64.tar.gz"
+      sha256 "dbaab44974bc0a7db6b1f4d5a3aeb2ca0560aa78f8583dfe6008dba2a3805418"
+
+      def install
+        bin.install "wylogger"
+        prefix.install "config.example.yml"
       end
     end
   end
@@ -48,7 +52,7 @@ class Wylogger < Formula
   def post_install
     (etc/"wylogger").mkpath
     unless (etc/"wylogger/config.yml").exist?
-      cp prefix/"config.example.yml", etc/"wylogger/config.yml"
+      cp opt_prefix/"config.example.yml", etc/"wylogger/config.yml"
     end
     puts "Please customize your configuration file at #{etc/"wylogger/config.yml"}"
   end
