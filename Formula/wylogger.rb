@@ -5,55 +5,51 @@
 class Wylogger < Formula
   desc "A tool for automatically authenticate the network of Wen Yuan Talent Apartment."
   homepage "https://github.com/mafuka/wylogger"
-  version "0.1.6"
+  version "0.2"
 
   on_macos do
-    if Hardware::CPU.arm?
-      url "https://github.com/mafuka/wylogger/releases/download/0.1.6/wylogger_darwin_arm64.tar.gz"
-      sha256 "ef371465a10cb8d3b05ae1b4f91bb59bb653a3dbf0a19492fb7f700ad850cfbb"
+    if Hardware::CPU.intel?
+      url "https://github.com/mafuka/wylogger/releases/download/0.2/wylogger_darwin_amd64.tar.gz"
+      sha256 "631c84f8649fdc64d675aa0d692f77f0ee54a60901b11aee3acd4a4fb8eb89f0"
 
       def install
         bin.install "wylogger"
-        libexec.install "config.example.yml"
+        etc.install "config.example.yml" => "config.yml"
       end
     end
-    if Hardware::CPU.intel?
-      url "https://github.com/mafuka/wylogger/releases/download/0.1.6/wylogger_darwin_amd64.tar.gz"
-      sha256 "8ce715d30dc28161e5830b7ddfd54fcef1571f9916d1ca985850a6fcc251b0ac"
+    if Hardware::CPU.arm?
+      url "https://github.com/mafuka/wylogger/releases/download/0.2/wylogger_darwin_arm64.tar.gz"
+      sha256 "04f9972d29d00b64573a9e5605ef550a369a8014209ac80a1ab046d9973c3589"
 
       def install
         bin.install "wylogger"
-        libexec.install "config.example.yml"
+        etc.install "config.example.yml" => "config.yml"
       end
     end
   end
 
   on_linux do
     if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://github.com/mafuka/wylogger/releases/download/0.1.6/wylogger_linux_arm64.tar.gz"
-      sha256 "a36f1c3585d47acbffd4ad016cb1928a134eeeaa2f4ff97a5cba185848fb95f1"
+      url "https://github.com/mafuka/wylogger/releases/download/0.2/wylogger_linux_arm64.tar.gz"
+      sha256 "3c0afe02edc6753e611828fd2b7ef123ff81becd8fad071e80af4b56e9269e1e"
 
       def install
         bin.install "wylogger"
-        libexec.install "config.example.yml"
+        etc.install "config.example.yml" => "config.yml"
       end
     end
     if Hardware::CPU.intel?
-      url "https://github.com/mafuka/wylogger/releases/download/0.1.6/wylogger_linux_amd64.tar.gz"
-      sha256 "c48f37ff08e739e62ecc12f45d8c0fb67277933f7530da68f3814274e1e0cbf3"
+      url "https://github.com/mafuka/wylogger/releases/download/0.2/wylogger_linux_amd64.tar.gz"
+      sha256 "ee204bbe0a796eacad9ce3c1b060694439e954104e415ff8c2f7db34f4bd6219"
 
       def install
         bin.install "wylogger"
-        libexec.install "config.example.yml"
+        etc.install "config.example.yml" => "config.yml"
       end
     end
   end
 
   def post_install
-    unless (etc/"wylogger/config.yml").exist?
-      (etc/"wylogger").mkpath
-      etc.install_symlink libexec/"config.example.yml" => "wylogger/config.yml"
-    end
     puts "Please customize your configuration file at #{etc/"wylogger/config.yml"}"
   end
 end
